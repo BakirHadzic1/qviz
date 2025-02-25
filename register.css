@@ -10,8 +10,8 @@ body {
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    border-top-right-radius: 5%;
-    border-bottom-right-radius: 5%;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
 }
 .right-side {
     width: 536px;
