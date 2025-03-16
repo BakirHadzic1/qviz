@@ -46,5 +46,32 @@ h1 span{
     font-size: 18px;
     border-radius: 4px;
     border: 1px #D22528;
-    width: 62px;
+    
 }
+
+.linija {
+    width: 35%;
+    height: 4px;
+    background: linear-gradient(to right, #2559d2 70%, #d9d9d9 30%);
+    margin: 20px auto;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 35px;
+}
+
+.option-btn {
+    width: 80%;
+    padding: 15px;
+    margin: auto;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000000;
+    cursor: pointer;
+}
+
