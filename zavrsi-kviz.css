@@ -1,4 +1,5 @@
 * {
+  font-family: "Steradian TRIAL", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -64,12 +65,27 @@ p {
   display: inline-block;
   margin-top: 15px;
   padding: 10px 35px;
-  background-color:#2559d2;
+  background-color: #2559d2;
   border: 1px #2559d2;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  color: #FFFFFF;
+  box-shadow: 0px 0px 10px 1px #5788fa;
+
+  color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
-
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  body {
+    display: block;
+  }
+}

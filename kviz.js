@@ -89,21 +89,31 @@ async function getUsers() {
 
 loginButton?.addEventListener("click", getUsers);
 
-
 function logRespons(response) {
-    response.json().then((data) => {
-      console.log(data);
-    });
-  }
-  
-  function logError(error) {
-    console.log(error);
-  }
-  
-  
-  function logFinally() {
-    console.log("Hello world, from finally");
-  }
-  
-  
+  response.json().then((data) => {
+    console.log(data);
+  });
+}
 
+function logError(error) {
+  console.log(error);
+}
+
+function logFinally() {
+  console.log("Hello world, from finally");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  hamburger.addEventListener("click", function () {
+    mobileMenu.classList.toggle("show-menu");
+  });
+
+  document.querySelectorAll(".mobile-menu a").forEach((link) => {
+    link.addEventListener("click", function () {
+      mobileMenu.classList.remove("show-menu");
+    });
+  });
+});

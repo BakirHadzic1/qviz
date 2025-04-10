@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Steradian TRIAL', Arial, sans-serif;
+  font-family: "Steradian TRIAL", sans-serif;
   text-align: center;
   background-color: #f8f9fa;
 }
@@ -144,4 +144,18 @@ h1 span {
 
 .option-btn:hover {
   background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+    .header span{
+        display: none;
+    }
+    .container{
+        width: 90%;
+
+    }
+
+    .question-box{
+        justify-content: space-between;
+    }
 }
