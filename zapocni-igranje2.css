@@ -3,6 +3,10 @@ body {
   font-family: "Steradian TRIAL", sans-serif;
   text-align: center;
   background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -17,9 +21,10 @@ h1 span {
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 15px;
-  padding: 10px;
+  width: 50%;
+  padding: 0 30px;
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -150,6 +155,11 @@ h1 span {
     .header span{
         display: none;
     }
+
+    .header {
+        width: 90%;
+    }
+
     .container{
         width: 90%;
 

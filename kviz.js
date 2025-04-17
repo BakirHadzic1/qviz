@@ -27,7 +27,29 @@ async function getUsers() {
   }
 }
 
-loginButton?.addEventListener("click", getUsers);
+
+// window.addEventListener("DOMContentLoaded", () => {
+//   const token = localStorage.getItem("token");
+
+//   if (token) {
+//     const loginBtn = document.querySelector(".login-button");
+//     const registerBtn = document.querySelector(".register-button");
+
+//     if (loginBtn) loginBtn.style.display = "none";
+//     if (registerBtn) registerBtn.style.display = "none";
+//   }
+// });
+
+// const logoutBtn = document.querySelector(".odajvi-se");
+
+// if (token && odajvise) {
+//   logoutBtn.style.display = "inline-block";
+
+//   logoutBtn.addEventListener("click", () => {
+//     localStorage.removeItem("token");
+//     window.location.href = "login.html"; 
+//   });
+// }
 
 function logRespons(response) {
   response.json().then((data) => {
@@ -42,3 +64,5 @@ function logError(error) {
 function logFinally() {
   console.log("Hello world, from finally");
 }
+
+
