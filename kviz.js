@@ -64,5 +64,3 @@ function logError(error) {
 function logFinally() {
   console.log("Hello world, from finally");
 }
-
-

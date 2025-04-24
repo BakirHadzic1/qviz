@@ -1,8 +1,5 @@
-
 let questionNumber = 1;
 let score = 0;
-
-
 
 async function loadQuestion() {
   try {
@@ -42,11 +39,15 @@ function showQuestion(question) {
   question.options.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.className = "option-btn";
-    btn.innerHTML = `<span>${String.fromCharCode(65 + index)}</span> ${option.text}`;
+    btn.innerHTML = `<span>${String.fromCharCode(65 + index)}</span> ${
+      option.text
+    }`;
 
     btn.addEventListener("click", async () => {
-      document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
-
+      document
+        .querySelectorAll(".option-btn")
+        .forEach((b) => (b.disabled = true));
+      console.log(option);
       const res = await fetch("https://quiz-be-zeta.vercel.app/game/answer", {
         method: "POST",
         headers: {
@@ -56,18 +57,17 @@ function showQuestion(question) {
         body: JSON.stringify({
           gameId: currentGameId,
           questionId: currentQuestionId,
-          answer: option._id,
+          answer: option.text,
         }),
       });
 
       const result = await res.json();
+      console.log(result);
 
       if (result.correct) {
-        btn.style.backgroundColor = "#28a745"; 
-        score += 1;
+        score++;
+        btn.style.background = "#28a745";
         document.getElementById("bodovi").textContent = score;
-
-        questionNumber++;
         setTimeout(() => {
           showQuestion(result.nextQuestion);
         }, 1000);
@@ -84,20 +84,3 @@ function showQuestion(question) {
 }
 
 loadQuestion();
-
-
-
-// function timer() {
-//   let timeLeft = 30;
-//   const timerEl = document.getElementsByClassName("timer");
-
-//   const countdown = setInterval(() => {
-//     timeLeft--;
-//     timerEl.textContent = timeLeft;
-//     if (timeLeft <= 0) {
-//       clearInterval(countdown);
-//       timerEl.textContent = "gotovo";
-//     }
-//   }, 1000);
-// }
-// timer();
