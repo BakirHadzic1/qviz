@@ -1,5 +1,9 @@
 let questionNumber = 1;
 let score = 0;
+let timerInterval;
+let currentGameId;
+let currentQuestionId;
+
 
 async function loadQuestion() {
   try {
@@ -22,11 +26,30 @@ async function loadQuestion() {
   }
 }
 
+function startTimer() {
+  let timeLeft = 30;
+  document.getElementById("timer").textContent = timeLeft;
+
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      window.location.href = "./zavrsi-kviz.html";
+    }
+  }, 1000);
+}
+
 function showQuestion(question) {
   if (!question) {
     window.location.href = "./zavrsi-kviz.html";
     return;
   }
+
+  startTimer()
 
   currentQuestionId = question._id;
 
@@ -44,6 +67,7 @@ function showQuestion(question) {
     }`;
 
     btn.addEventListener("click", async () => {
+        clearInterval(timerInterval);
       document
         .querySelectorAll(".option-btn")
         .forEach((b) => (b.disabled = true));

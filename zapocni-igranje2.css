@@ -152,7 +152,7 @@ h1 span {
 }
 
 @media screen and (max-width: 768px) {
-    .header span{
+    .header .text-bodovi{
         display: none;
     }
 
