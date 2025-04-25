@@ -66,6 +66,7 @@ function showQuestion(question) {
 
       if (result.correct) {
         score++;
+        localStorage.setItem("score", score);
         btn.style.background = "#28a745";
         document.getElementById("bodovi").textContent = score;
         setTimeout(() => {

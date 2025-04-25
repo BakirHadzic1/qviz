@@ -28,28 +28,32 @@ async function getUsers() {
 }
 
 
-// window.addEventListener("DOMContentLoaded", () => {
-//   const token = localStorage.getItem("token");
+window.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
 
-//   if (token) {
-//     const loginBtn = document.querySelector(".login-button");
-//     const registerBtn = document.querySelector(".register-button");
+  const loginBtn = document.querySelector(".login-button");
+  const registerBtn = document.querySelector(".register-button");
+  const logoutBtn = document.querySelector(".odjavi-se a");
 
-//     if (loginBtn) loginBtn.style.display = "none";
-//     if (registerBtn) registerBtn.style.display = "none";
-//   }
-// });
+  if (token) {
+    // Korisnik je prijavljen
+    if (loginBtn) loginBtn.style.display = "none";
+    if (registerBtn) registerBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
 
-// const logoutBtn = document.querySelector(".odajvi-se");
-
-// if (token && odajvise) {
-//   logoutBtn.style.display = "inline-block";
-
-//   logoutBtn.addEventListener("click", () => {
-//     localStorage.removeItem("token");
-//     window.location.href = "login.html"; 
-//   });
-// }
+    // Klik na "Odjavi se"
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      window.location.href = "login.html"; // Vrati ga na login
+    });
+  } else {
+    // Nema tokena, korisnik nije prijavljen
+    if (logoutBtn) logoutBtn.style.display = "none";
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    if (registerBtn) registerBtn.style.display = "inline-block";
+  }
+});
 
 function logRespons(response) {
   response.json().then((data) => {
