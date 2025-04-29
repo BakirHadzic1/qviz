@@ -27,7 +27,6 @@ async function getUsers() {
   }
 }
 
-
 window.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
 
@@ -36,19 +35,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.querySelector(".odjavi-se a");
 
   if (token) {
-    // Korisnik je prijavljen
     if (loginBtn) loginBtn.style.display = "none";
     if (registerBtn) registerBtn.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
 
-    // Klik na "Odjavi se"
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.removeItem("token");
-      window.location.href = "login.html"; // Vrati ga na login
+      window.location.href = "login.html";
     });
   } else {
-    // Nema tokena, korisnik nije prijavljen
     if (logoutBtn) logoutBtn.style.display = "none";
     if (loginBtn) loginBtn.style.display = "inline-block";
     if (registerBtn) registerBtn.style.display = "inline-block";
@@ -68,3 +64,5 @@ function logError(error) {
 function logFinally() {
   console.log("Hello world, from finally");
 }
+
+
