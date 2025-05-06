@@ -66,3 +66,20 @@ function logFinally() {
 }
 
 
+
+  document.querySelectorAll('.start-quiz, .btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('quiz-modal').style.display = 'flex';
+    });
+  });
+
+  document.getElementById('closeModal').addEventListener('click', function () {
+    document.getElementById('quiz-modal').style.display = 'none';
+  });
+
+  document.getElementById('startGameBtn').addEventListener('click', function () {
+    window.location.href = 'zapocni-igranje2.html'; 
+  });
+
+

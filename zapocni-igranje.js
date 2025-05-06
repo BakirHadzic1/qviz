@@ -3,8 +3,7 @@ let score = 0;
 let timerInterval;
 let currentGameId;
 let currentQuestionId;
-
-
+        
 async function loadQuestion() {
   try {
     const token = localStorage.getItem("token");
@@ -38,18 +37,18 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      window.location.href = "./zavrsi-kviz.html";
+      endQuiz("Vrijeme je isteklo!");
     }
   }, 1000);
 }
 
 function showQuestion(question) {
   if (!question) {
-    window.location.href = "./zavrsi-kviz.html";
+    endQuiz("Čestitamo! Završili ste kviz.");
     return;
   }
 
-  startTimer()
+  startTimer();
 
   currentQuestionId = question._id;
 
@@ -67,11 +66,11 @@ function showQuestion(question) {
     }`;
 
     btn.addEventListener("click", async () => {
-        clearInterval(timerInterval);
+      clearInterval(timerInterval);
       document
         .querySelectorAll(".option-btn")
         .forEach((b) => (b.disabled = true));
-      console.log(option);
+
       const res = await fetch("https://quiz-be-zeta.vercel.app/game/answer", {
         method: "POST",
         headers: {
@@ -86,7 +85,6 @@ function showQuestion(question) {
       });
 
       const result = await res.json();
-      console.log(result);
 
       if (result.correct) {
         score++;
@@ -94,18 +92,43 @@ function showQuestion(question) {
         btn.style.background = "#28a745";
         document.getElementById("bodovi").textContent = score;
         setTimeout(() => {
+          questionNumber++;
           showQuestion(result.nextQuestion);
         }, 1000);
       } else {
         btn.style.backgroundColor = "#dc3545";
         setTimeout(() => {
-          window.location.href = "./zavrsi-kviz.html";
+          endQuiz("Netačan odgovor!");
         }, 1000);
       }
     });
 
     optionsContainer.appendChild(btn);
   });
+}
+
+function endQuiz(message) {
+  clearInterval(timerInterval);
+  document.querySelector(".quiz-container").classList.add("hidden");
+
+  const rank = getRank(score);
+  showQuizEndModal(score, rank, message || "Kviz završen!");
+}
+
+function showQuizEndModal(score, rank, message) {
+  document.getElementById("final-score").textContent = score;
+  document.getElementById("final-rank").textContent = `#${rank}`;
+  document.getElementById("quiz-end-message").textContent =
+    message || "Kviz završen!";
+  document.getElementById("quiz-end-modal").classList.remove("hidden");
+}
+
+function goToLeaderboard() {
+  window.location.href = "/leaderboard.html";
+}
+
+function goToHome() {
+  window.location.href = "/index.html";
 }
 
 loadQuestion();
