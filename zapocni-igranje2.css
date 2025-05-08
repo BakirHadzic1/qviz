@@ -156,7 +156,7 @@ h1 span {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5.5px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,6 +176,7 @@ h1 span {
     border-radius: 10px;
     padding: 25px 30px;
     max-width: 400px;
+    height: 430px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     animation: fadeIn 0.4s ease-in-out;
@@ -184,22 +185,55 @@ h1 span {
   .modal-content h2 {
     margin-top: 10px;
     font-size: 20px;
-    color: #333;
+    color:  #000000;
+    display: flex;
   }
   
   .modal-content h3 {
     font-size: 18px;
-    color: #007bff;
-    margin-bottom: 5px;
+    color: #000;
+    margin-bottom: 25px;
+    display: flex;
+  }
+
+  .modal-content h3 span{
+    color: #2559D2;
   }
   
   .modal-content p {
     font-size: 16px;
     margin: 8px 0;
+    display: flex;
+    margin-bottom: 32px;
+    color:  #00000099;;
+  }
+
+  .modal-content p span{
+    color: #000;
+  }
+
+  .quiz-end-modal .modal-content p img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+
+  .quiz-end-modal .modal-content p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quiz-end-modal .modal-content p span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
   
   .modal-buttons {
-    margin-top: 20px;
+    margin-top: 72px;
+    display: flex;
   }
   
   .modal-buttons button {
@@ -212,11 +246,13 @@ h1 span {
   }
   
   .modal-buttons button:first-child {
-    background-color: #f1f1f1;
+    background-color:  #FFFFFF;
+    color: #2559D2;
+    border: 1px solid blue ;
   }
   
   .modal-buttons button:last-child {
-    background-color: #007bff;
+    background-color: #2559d2;
     color: white;
   }
   

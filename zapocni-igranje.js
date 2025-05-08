@@ -3,7 +3,7 @@ let score = 0;
 let timerInterval;
 let currentGameId;
 let currentQuestionId;
-        
+
 async function loadQuestion() {
   try {
     const token = localStorage.getItem("token");
@@ -37,7 +37,6 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      endQuiz("Vrijeme je isteklo!");
     }
   }, 1000);
 }
@@ -98,7 +97,7 @@ function showQuestion(question) {
       } else {
         btn.style.backgroundColor = "#dc3545";
         setTimeout(() => {
-          endQuiz("Netačan odgovor!");
+          endQuiz("");
         }, 1000);
       }
     });
@@ -108,12 +107,12 @@ function showQuestion(question) {
 }
 
 function endQuiz(message) {
-  clearInterval(timerInterval);
-  document.querySelector(".quiz-container").classList.add("hidden");
-
-  const rank = getRank(score);
-  showQuizEndModal(score, rank, message || "Kviz završen!");
-}
+    clearInterval(timerInterval);
+    document.querySelector(".quiz-container").classList.add("hidden");
+  
+    const rank = ""; 
+    showQuizEndModal(score, rank, message );
+  }
 
 function showQuizEndModal(score, rank, message) {
   document.getElementById("final-score").textContent = score;
@@ -124,7 +123,7 @@ function showQuizEndModal(score, rank, message) {
 }
 
 function goToLeaderboard() {
-  window.location.href = "/leaderboard.html";
+  window.location.hash = "#leaderboard-section";
 }
 
 function goToHome() {
