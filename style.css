@@ -81,6 +81,27 @@ body {
   text-decoration: none;
 }
 
+.coinsi{
+  display: flex;
+  align-items: center;
+  background-color: #d9d9d9;
+  color: gold;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 1px solid #d9d9d9;
+  
+}
+
+.coinsi span{
+
+}
+
+.slika-coina{
+  height: 30px;
+  width: 30px;
+
+}
+
 .hamburger {
   display: none;
   flex-direction: column;

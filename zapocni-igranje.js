@@ -106,14 +106,14 @@ function showQuestion(question) {
   });
 }
 
-function endQuiz(message) {
+async function endQuiz(message) {
     clearInterval(timerInterval);
     document.querySelector(".quiz-container").classList.add("hidden");
   
-    const rank = ""; 
-    showQuizEndModal(score, rank, message );
+    const rank = await getRank(score);
+    showQuizEndModal(score, rank, message || "Kviz završen!");
   }
-
+  
 function showQuizEndModal(score, rank, message) {
   document.getElementById("final-score").textContent = score;
   document.getElementById("final-rank").textContent = `#${rank}`;
@@ -122,8 +122,29 @@ function showQuizEndModal(score, rank, message) {
   document.getElementById("quiz-end-modal").classList.remove("hidden");
 }
 
+async function getRank(score) {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch("https://quiz-be-zeta.vercel.app/leaderboard");
+      const data = await res.json();
+  
+      const sorted = data.sort((a, b) => b.score - a.score);
+  
+      const user = data.find((u) => u.token === token); 
+  
+      if (!user) return "?";
+  
+      const rank = sorted.findIndex((u) => u.username === user.username) + 1;
+      return rank;
+    } catch (error) {
+      console.error("Greška pri dohvaćanju ranka:", error);
+      return "?";
+    }
+  }
+  
+
 function goToLeaderboard() {
-  window.location.hash = "#leaderboard-section";
+    window.location.href = "/index.html#leaderboard-section";
 }
 
 function goToHome() {
